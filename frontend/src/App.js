@@ -23,15 +23,15 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
-const ComingSoon = ({ page }) => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <div className="text-6xl mb-4">🧶</div>
-      <h1 className="font-display text-3xl text-blush-700 mb-2">{page}</h1>
-      <p className="font-body text-blush-400">Coming soon — we're crafting this page!</p>
-    </div>
-  </div>
-);
+// const ComingSoon = ({ page }) => (
+//   <div className="min-h-screen flex items-center justify-center">
+//     <div className="text-center">
+//       <div className="text-6xl mb-4">🧶</div>
+//       <h1 className="font-display text-3xl text-blush-700 mb-2">{page}</h1>
+//       <p className="font-body text-blush-400">Coming soon — we're crafting this page!</p>
+//     </div>
+//   </div>
+// );
 
 // Layout wrapper that hides Navbar/Footer on admin pages
 const StorefrontLayout = ({ children }) => (

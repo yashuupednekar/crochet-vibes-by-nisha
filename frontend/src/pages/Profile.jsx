@@ -5,7 +5,7 @@ import API from '../services/api';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 

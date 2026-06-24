@@ -4,7 +4,7 @@ import { FiTrash2, FiArrowLeft, FiShoppingBag, FiPlus, FiMinus } from 'react-ico
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
-  const { cart, cartTotal, updateQuantity, removeFromCart, loading } = useCart();
+  const { cart, cartTotal, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   const shippingFee = cartTotal >= 999 || cartTotal === 0 ? 0 : 99;

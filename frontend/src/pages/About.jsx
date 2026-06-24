@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiHeart, FiAward, FiUsers, FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 
 const values = [
   { icon: '🧶', title: 'Handmade with Love', desc: 'Every single piece is crocheted by hand, stitch by stitch, with care and patience.' },

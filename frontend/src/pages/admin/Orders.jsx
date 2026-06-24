@@ -21,14 +21,13 @@ const AdminOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [updating, setUpdating] = useState(false);
 
-  useEffect(() => {
-    fetchOrders();
-  }, [filterStatus]);
-
+useEffect(() => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const { data } = await API.get(`/orders/admin/all?status=${filterStatus}`);
+      const { data } = await API.get(
+        `/orders/admin/all?status=${filterStatus}`
+      );
       setOrders(data);
     } catch (error) {
       toast.error('Failed to load orders');
@@ -36,6 +35,21 @@ const AdminOrders = () => {
       setLoading(false);
     }
   };
+
+  fetchOrders();
+}, [filterStatus]);
+
+  // const fetchOrders = async () => {
+  //   setLoading(true);
+  //   try {
+  //     // const { data } = await API.get(`/orders/admin/all?status=${filterStatus}`);
+  //     // setOrders(data);
+  //   } catch (error) {
+  //     toast.error('Failed to load orders');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleStatusUpdate = async (orderId, newStatus) => {
     setUpdating(true);
@@ -190,7 +204,10 @@ const AdminOrders = () => {
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-blush-50 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                         {item.image ? (
-                          <img src={`http://localhost:5000${item.image}`} alt={item.name} className="w-full h-full object-cover" />
+                          <img
+                          src={`${process.env.REACT_APP_API_URL}${item.image}`}
+                          alt={item.name}
+                        />
                         ) : (
                           <span className="text-lg">🧶</span>
                         )}
