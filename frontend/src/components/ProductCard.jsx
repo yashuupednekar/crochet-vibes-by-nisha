@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
       {/* Image */}
       <div className="relative overflow-hidden bg-blush-50 h-56 flex items-center justify-center">
         {image ? (
-          <img src={`http://localhost:5000${image}`} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <img src={`https://crochet-vibes-by-nisha.onrender.com${image}`} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         ) : (
           <div className="text-6xl">🧶</div>
         )}
