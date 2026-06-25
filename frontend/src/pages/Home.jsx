@@ -133,7 +133,7 @@ const [heroImage, setHeroImage] = useState(null);
                 <div className="w-full h-full bg-gradient-to-br from-blush-100 to-rose-100 rounded-full flex items-center justify-center shadow-xl overflow-hidden border-4 border-white">
                   {heroImage ? (
                     <img
-                      src={`http://localhost:5000${heroImage}`}
+                      src={`https://crochet-vibes-by-nisha.onrender.com${heroImage}`}
                       alt="Crochet Vibes"
                       className="w-full h-full object-cover"
                     />
