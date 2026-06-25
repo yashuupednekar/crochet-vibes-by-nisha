@@ -1,31 +1,9 @@
-const dns = require('dns');
-dns.setDefaultResultOrder('ipv4first');
-
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  host: '74.125.130.108',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
-
-transporter.verify((err, success) => {
-  if (err) {
-    console.log('SMTP ERROR:', err);
-  } else {
-    console.log('SMTP READY');
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Send order confirmation email
 const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
@@ -38,8 +16,8 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
       </tr>
     `).join('');
 
-    const mailOptions = {
-      from: `"Crochet Vibes by Nisha 🧶" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
       to: toEmail,
       subject: `Order Confirmed! #${order._id.toString().slice(-6).toUpperCase()} 🎉`,
       html: `
@@ -85,9 +63,8 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
           </div>
         </div>
       `,
-    };
+    });
 
-    await transporter.sendMail(mailOptions);
     console.log('Order confirmation email sent to', toEmail);
   } catch (error) {
     console.error('Email sending failed:', error.message);
@@ -104,8 +81,8 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
       'Cancelled': '❌',
     };
 
-    const mailOptions = {
-      from: `"Crochet Vibes by Nisha 🧶" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
       to: toEmail,
       subject: `Order ${status} ${statusEmojis[status] || ''} #${order._id.toString().slice(-6).toUpperCase()}`,
       html: `
@@ -128,9 +105,8 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
           </div>
         </div>
       `,
-    };
+    });
 
-    await transporter.sendMail(mailOptions);
     console.log('Status update email sent to', toEmail);
   } catch (error) {
     console.error('Email sending failed:', error.message);
