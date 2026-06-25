@@ -17,7 +17,7 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
     `).join('');
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
+      from: 'Crochet Vibes by Nisha <yashpednekar89@gmail.com>',
       to: toEmail,
       subject: `Order Confirmed! #${order._id.toString().slice(-6).toUpperCase()} 🎉`,
       html: `
@@ -82,7 +82,7 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
     };
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
+      from: 'Crochet Vibes by Nisha <yashpednekar89@gmail.com>',
       to: toEmail,
       subject: `Order ${status} ${statusEmojis[status] || ''} #${order._id.toString().slice(-6).toUpperCase()}`,
       html: `
