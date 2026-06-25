@@ -131,7 +131,7 @@ const ProductDetail = () => {
             <div className="bg-blush-50 rounded-3xl overflow-hidden h-96 flex items-center justify-center border border-blush-100 relative">
               {product.images && product.images.length > 0 ? (
                 <img
-                  src={`http://localhost:5000${product.images[selectedImage]}`}
+                  src={`https://crochet-vibes-by-nisha.onrender.com${product.images[selectedImage]}`}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -173,7 +173,7 @@ const ProductDetail = () => {
                     }`}
                   >
                     <img
-                      src={`http://localhost:5000${img}`}
+                      src={`https://crochet-vibes-by-nisha.onrender.com${img}`}
                       alt={`${product.name} ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
