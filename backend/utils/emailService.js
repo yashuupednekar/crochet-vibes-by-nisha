@@ -10,11 +10,20 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  family: 4,
   connectionTimeout: 30000,
   greetingTimeout: 30000,
   socketTimeout: 30000,
-  tls: {
-    rejectUnauthorized: false
+  // tls: {
+  //   rejectUnauthorized: false
+  // }
+});
+
+transporter.verify((err, success) => {
+  if (err) {
+    console.log('SMTP ERROR:', err);
+  } else {
+    console.log('SMTP READY');
   }
 });
 
