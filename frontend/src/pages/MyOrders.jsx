@@ -85,7 +85,7 @@ const MyOrders = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-blush-50 rounded-xl flex items-center justify-center flex-shrink-0">
                       {order.items[0]?.image ? (
-                        <img src={`http://localhost:5000${order.items[0].image}`} alt="" className="w-full h-full object-cover rounded-xl" />
+                        <img src={`https://crochet-vibes-by-nisha.onrender.com${order.items[0].image}`} alt="" className="w-full h-full object-cover rounded-xl" />
                       ) : (
                         <span className="text-xl">🧶</span>
                       )}
@@ -143,7 +143,7 @@ const MyOrders = () => {
                         <div key={i} className="flex items-center gap-3">
                           <div className="w-12 h-12 bg-blush-50 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                             {item.image ? (
-                              <img src={`http://localhost:5000${item.image}`} alt={item.name} className="w-full h-full object-cover" />
+                              <img src={`https://crochet-vibes-by-nisha.onrender.com${item.image}`} alt={item.name} className="w-full h-full object-cover" />
                             ) : (
                               <span className="text-xl">🧶</span>
                             )}
