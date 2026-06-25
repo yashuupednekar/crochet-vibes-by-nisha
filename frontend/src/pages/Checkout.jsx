@@ -227,7 +227,7 @@ const Checkout = () => {
                     <div key={product._id} className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-blush-50 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                         {product.images?.[0] ? (
-                          <img src={`http://localhost:5000${product.images[0]}`} alt={product.name} className="w-full h-full object-cover" />
+                          <img src={`https://crochet-vibes-by-nisha.onrender.com${product.images[0]}`} alt={product.name} className="w-full h-full object-cover" />
                         ) : (
                           <span className="text-xl">🧶</span>
                         )}
