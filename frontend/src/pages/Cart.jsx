@@ -59,7 +59,7 @@ const Cart = () => {
                     onClick={() => navigate(`/product/${product._id}`)}
                   >
                     {product.images?.[0] ? (
-                      <img src={`http://localhost:5000${product.images[0]}`} alt={product.name} className="w-full h-full object-cover" />
+                      <img src={`https://crochet-vibes-by-nisha.onrender.com${product.images[0]}`} alt={product.name} className="w-full h-full object-cover" />
                     ) : (
                       <span className="text-4xl">🧶</span>
                     )}
