@@ -1,11 +1,7 @@
 const { Resend } = require('resend');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Send order confirmation email
 const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
   try {
     const itemsHtml = order.items.map(item => `
@@ -17,8 +13,8 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
     `).join('');
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha <yashpednekar89@gmail.com>',
-      to: toEmail,
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
+      to: 'yashpednekar89@gmail.com',
       subject: `Order Confirmed! #${order._id.toString().slice(-6).toUpperCase()} 🎉`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fdf8f0; padding: 30px; border-radius: 16px;">
@@ -26,19 +22,16 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
             <span style="font-size: 40px;">🧶</span>
             <h1 style="color: #be1258; font-size: 24px; margin: 10px 0 0;">Crochet Vibes by Nisha</h1>
           </div>
-
           <div style="background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px;">
             <h2 style="color: #953d68; font-size: 20px;">Thank you, ${customerName}! 🌸</h2>
             <p style="color: #682e4c; font-size: 14px; line-height: 1.6;">
-              Your order has been placed successfully and is now <strong>Pending Verification</strong>. We'll notify you once Nisha confirms your order!
+              Your order has been placed successfully and is now <strong>Pending Verification</strong>.
             </p>
-
             <div style="background: #fbeef4; border-radius: 12px; padding: 16px; margin: 20px 0;">
               <p style="margin: 4px 0; color: #682e4c; font-size: 14px;"><strong>Order ID:</strong> #${order._id.toString().slice(-6).toUpperCase()}</p>
               <p style="margin: 4px 0; color: #682e4c; font-size: 14px;"><strong>Amount Paid:</strong> ₹${order.grandTotal}</p>
               <p style="margin: 4px 0; color: #682e4c; font-size: 14px;"><strong>Status:</strong> Pending Verification</p>
             </div>
-
             <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
               <thead>
                 <tr style="background: #fbeef4;">
@@ -47,31 +40,24 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
                   <th style="padding: 10px; text-align: right; color: #953d68; font-size: 13px;">Price</th>
                 </tr>
               </thead>
-              <tbody>
-                ${itemsHtml}
-              </tbody>
+              <tbody>${itemsHtml}</tbody>
             </table>
-
             <div style="text-align: right; margin-top: 16px; padding-top: 16px; border-top: 2px solid #fbeef4;">
               <p style="color: #682e4c; font-size: 16px; font-weight: bold;">Total: ₹${order.grandTotal}</p>
             </div>
           </div>
-
           <div style="text-align: center; padding: 16px; color: #c9a0b4; font-size: 12px;">
             <p>Made with 🌸 by Crochet Vibes</p>
-            <p>nisha@crochetvibes.com</p>
           </div>
         </div>
       `,
     });
-
     console.log('Order confirmation email sent to', toEmail);
   } catch (error) {
     console.error('Email sending failed:', error.message);
   }
 };
 
-// Send order status update email
 const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
   try {
     const statusEmojis = {
@@ -82,7 +68,7 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
     };
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha <yashpednekar89@gmail.com>',
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
       to: toEmail,
       subject: `Order ${status} ${statusEmojis[status] || ''} #${order._id.toString().slice(-6).toUpperCase()}`,
       html: `
@@ -94,7 +80,7 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
           <div style="background: white; border-radius: 16px; padding: 24px;">
             <h2 style="color: #953d68; font-size: 20px;">Hi ${customerName}! 🌸</h2>
             <p style="color: #682e4c; font-size: 14px; line-height: 1.6;">
-              Your order <strong>#${order._id.toString().slice(-6).toUpperCase()}</strong> status has been updated to: <strong>${status}</strong>
+              Your order <strong>#${order._id.toString().slice(-6).toUpperCase()}</strong> is now: <strong>${status}</strong>
             </p>
             <div style="background: #fbeef4; border-radius: 12px; padding: 16px; margin-top: 16px; text-align: center;">
               <p style="margin: 0; color: #953d68; font-size: 18px; font-weight: bold;">${status} ${statusEmojis[status] || ''}</p>
@@ -106,7 +92,6 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
         </div>
       `,
     });
-
     console.log('Status update email sent to', toEmail);
   } catch (error) {
     console.error('Email sending failed:', error.message);
