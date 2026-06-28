@@ -13,8 +13,8 @@ const sendOrderConfirmationEmail = async (toEmail, customerName, order) => {
     `).join('');
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha yashpednekar89@gmail.com>',
-      to: toEmail,
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
+      to: 'yashpednekar89@gmail',
       subject: `Order Confirmed! #${order._id.toString().slice(-6).toUpperCase()} 🎉`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fdf8f0; padding: 30px; border-radius: 16px;">
@@ -68,8 +68,8 @@ const sendStatusUpdateEmail = async (toEmail, customerName, order, status) => {
     };
 
     await resend.emails.send({
-      from: 'Crochet Vibes by Nisha <yashpednekar89@gmail.com>',
-      to: toEmail,
+      from: 'Crochet Vibes by Nisha <onboarding@resend.dev>',
+      to: 'yashpednekar89@gmail',
       subject: `Order ${status} ${statusEmojis[status] || ''} #${order._id.toString().slice(-6).toUpperCase()}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fdf8f0; padding: 30px; border-radius: 16px;">
